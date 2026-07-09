@@ -1,0 +1,1805 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechSolve ⚡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --v1: #6c3fff;
+    --v2: #a259ff;
+    --p1: #f72585;
+    --a1: #4cc9f0;
+    --a2: #43e97b;
+    --a3: #f8961e;
+    --dark: #0b0018;
+    --dark2: #130029;
+    --dark3: #1e0040;
+    --text: #e8e0ff;
+    --muted: #9b8ec4;
+    --surface: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.10);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .ts-header {
+    position: relative;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 70px 20px 60px;
+    overflow: hidden;
+    background: var(--dark2);
+  }
+
+  .ts-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 15% 50%, rgba(108,63,255,0.45) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 60% at 85% 30%, rgba(247,37,133,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 60% 90%, rgba(76,201,240,0.2) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  /* Animated blobs */
+  .ts-header::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(108,63,255,0.15), transparent 70%);
+    top: -120px; left: -100px;
+    animation: blobFloat 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes blobFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, 20px) scale(1.08); }
+  }
+
+  .ts-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 58px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    position: relative;
+    z-index: 1;
+    line-height: 1;
+  }
+
+  .ts-logo .accent { color: var(--p1); }
+  .ts-logo .bolt {
+    display: inline-block;
+    animation: boltPulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px #f8961e);
+  }
+
+  @keyframes boltPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 12px #f8961e); }
+    50% { transform: scale(1.15); filter: drop-shadow(0 0 24px #f8961e); }
+  }
+
+  .ts-tagline {
+    font-size: 16px;
+    color: var(--muted);
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.3px;
+  }
+
+  .ts-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 8px 22px;
+    background: rgba(108,63,255,0.2);
+    border: 1px solid rgba(108,63,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #c4b0ff;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(8px);
+  }
+
+  /* ── NAV ── */
+  .ts-nav {
+    background: rgba(11, 0, 24, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+  }
+
+  .ts-nav a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 16px 18px;
+    font-weight: 600;
+    font-size: 13.5px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.2px;
+  }
+
+  .ts-nav a:hover {
+    color: #fff;
+    border-color: var(--p1);
+  }
+
+  /* ── HERO ── */
+  .ts-hero {
+    text-align: center;
+    padding: 80px 20px 64px;
+    background: linear-gradient(180deg, rgba(30,0,64,0.6) 0%, transparent 100%);
+    position: relative;
+  }
+
+  .ts-hero h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .ts-hero h2 em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--v2), var(--p1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .ts-hero p {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 32px;
+    line-height: 1.75;
+  }
+
+  .ts-pill {
+    display: inline-block;
+    padding: 5px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    background: rgba(108,63,255,0.15);
+    color: var(--v2);
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(108,63,255,0.3);
+    text-transform: uppercase;
+  }
+
+  .ts-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.22s;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .ts-btn-primary {
+    background: linear-gradient(135deg, var(--v1), var(--p1));
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(108,63,255,0.45), 0 0 0 0 rgba(108,63,255,0);
+  }
+
+  .ts-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 36px rgba(108,63,255,0.6);
+  }
+
+  .ts-btn-outline {
+    background: transparent;
+    color: var(--v2);
+    border: 1.5px solid rgba(162,89,255,0.5);
+    margin-left: 12px;
+  }
+
+  .ts-btn-outline:hover {
+    background: rgba(108,63,255,0.15);
+    border-color: var(--v2);
+    color: #fff;
+  }
+
+  /* ── STATS ── */
+  .ts-stats {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ts-stat {
+    flex: 1;
+    min-width: 130px;
+    padding: 28px 20px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .ts-stat:last-child { border-right: none; }
+  .ts-stat:hover { background: rgba(108,63,255,0.08); }
+
+  .ts-stat-n {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--v2), var(--p1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .ts-stat-l {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  /* ── SECTIONS ── */
+  .ts-sec {
+    padding: 72px 20px;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .ts-sec-title {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .ts-sec-title h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .ts-sec-title h3 span {
+    background: linear-gradient(90deg, var(--v2), var(--p1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .ts-sec-title p {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── PROBLEM CARDS ── */
+  .ts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .ts-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+  }
+
+  .ts-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 60%);
+    border-radius: 20px;
+    pointer-events: none;
+  }
+
+  .ts-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: var(--accent, var(--v1));
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--accent, var(--v1));
+    background: rgba(255,255,255,0.09);
+  }
+
+  .ts-card-strip {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent, var(--v1));
+    border-radius: 20px 20px 0 0;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .ts-card:hover .ts-card-strip { opacity: 1; }
+
+  .ts-card-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 16px;
+    background: var(--icon-bg, rgba(108,63,255,0.15));
+  }
+
+  .ts-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .ts-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .ts-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent, var(--v1));
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+
+  .ts-link::after { content: '→'; transition: transform 0.2s; }
+  .ts-card:hover .ts-link { gap: 10px; }
+  .ts-card:hover .ts-link::after { transform: translateX(3px); }
+
+  /* ── FEATURE BAND ── */
+  .ts-features {
+    padding: 64px 20px;
+    background: linear-gradient(135deg, rgba(108,63,255,0.15) 0%, rgba(247,37,133,0.12) 100%);
+    border-top: 1px solid rgba(108,63,255,0.25);
+    border-bottom: 1px solid rgba(108,63,255,0.25);
+  }
+
+  .ts-features-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+  }
+
+  .ts-feat { text-align: center; }
+
+  .ts-feat-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+    display: block;
+    filter: drop-shadow(0 0 8px rgba(108,63,255,0.5));
+  }
+
+  .ts-feat h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .ts-feat p {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── TUTORIALS ── */
+  .ts-tut {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+  }
+
+  .ts-tut:hover {
+    transform: translateY(-8px);
+    border-color: rgba(162,89,255,0.5);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+
+  .ts-tut-top {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ts-tut-top::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.15);
+  }
+
+  .ts-tut-top span { position: relative; z-index: 1; }
+
+  .ts-tut-body { padding: 22px; }
+
+  .ts-tut-body h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .ts-tut-body p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .ts-tag {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    background: rgba(108,63,255,0.15);
+    color: var(--v2);
+    border: 1px solid rgba(108,63,255,0.25);
+    letter-spacing: 0.3px;
+  }
+
+  /* ── TOOLS SECTION ── */
+  .hw {
+    padding: 72px 20px;
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid var(--border);
+  }
+
+  .hw-inner { max-width: 1140px; margin: 0 auto; }
+
+  .hw-title {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .hw-pill {
+    display: inline-block;
+    padding: 5px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    background: rgba(162,89,255,0.12);
+    color: var(--v2);
+    margin-bottom: 12px;
+    border: 1px solid rgba(162,89,255,0.25);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .hw-title h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .hw-title h3 span {
+    background: linear-gradient(90deg, var(--v2), var(--p1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hw-title p {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 10px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .hw-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hw-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--btn1), var(--btn2));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .hw-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent, var(--v1));
+    box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .hw-card:hover::before { opacity: 1; }
+
+  .hw-ico {
+    font-size: 42px;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  }
+
+  .hw-name {
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .hw-desc {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    flex: 1;
+  }
+
+  .hw-htag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--tag-bg);
+    color: var(--accent, var(--v1));
+    margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .hw-badges {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+
+  .hw-badge {
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    background: rgba(255,255,255,0.07);
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  .hw-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(90deg, var(--btn1), var(--btn2));
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.2s;
+    width: 100%;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+
+  .hw-btn:hover {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    filter: brightness(1.1);
+  }
+
+  .hw-free {
+    position: absolute;
+    top: 14px; right: 14px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    background: rgba(67,233,123,0.15);
+    color: var(--a2);
+    border: 1px solid rgba(67,233,123,0.25);
+  }
+
+  /* ── CONTACT ── */
+  .ts-contact-wrap {
+    padding: 72px 20px;
+    background: rgba(255,255,255,0.01);
+    border-top: 1px solid var(--border);
+  }
+
+  .ts-contact {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(108,63,255,0.25);
+    border-radius: 24px;
+    padding: 44px;
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ts-contact::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(108,63,255,0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .ts-contact h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+    position: relative;
+  }
+
+  .ts-contact .sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .ts-contact label {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .ts-contact input,
+  .ts-contact textarea,
+  .ts-contact select {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 20px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    position: relative;
+  }
+
+  .ts-contact input::placeholder,
+  .ts-contact textarea::placeholder {
+    color: rgba(255,255,255,0.25);
+  }
+
+  .ts-contact input:focus,
+  .ts-contact textarea:focus {
+    border-color: var(--v2);
+    background: rgba(108,63,255,0.1);
+  }
+
+  .ts-contact textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+
+  .ts-contact select {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239b8ec4' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+  }
+
+  .ts-contact select option { background: #1a0040; color: #fff; }
+
+  #ts-resp {
+    margin-top: 14px;
+    color: var(--a2);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    min-height: 22px;
+  }
+
+  /* ── FOOTER ── */
+  .ts-footer {
+    background: rgba(0,0,0,0.4);
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 13px;
+  }
+
+  .ts-footer-links {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .ts-footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .ts-footer-links a:hover { color: var(--p1); }
+
+  .ts-footer span { color: var(--v2); font-weight: 700; }
+
+  /* ── MODAL ── */
+  .ts-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 0, 20, 0.8);
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    backdrop-filter: blur(6px);
+  }
+
+  .ts-overlay.on { display: flex; }
+
+  .ts-modal {
+    background: #1a0040;
+    border: 1px solid rgba(162,89,255,0.3);
+    border-radius: 24px;
+    padding: 36px;
+    max-width: 540px;
+    width: 100%;
+    position: relative;
+    animation: popIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    max-height: 82vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(162,89,255,0.15);
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.88) translateY(20px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .ts-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ts-modal-ico {
+    width: 52px; height: 52px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+
+  .ts-modal h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+  }
+
+  .ts-modal p {
+    color: var(--muted);
+    line-height: 1.75;
+    font-size: 14.5px;
+    margin-bottom: 12px;
+  }
+
+  .ts-modal ul {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ts-modal ul li {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    counter-increment: steps;
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .ts-modal ul { counter-reset: steps; }
+
+  .ts-modal ul li::before {
+    content: counter(steps);
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px; height: 20px;
+    background: rgba(108,63,255,0.3);
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--v2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .ts-modal li strong { color: var(--v2); }
+
+  .ts-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+
+  .ts-close:hover {
+    background: var(--p1);
+    color: #fff;
+    border-color: var(--p1);
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--dark2); }
+  ::-webkit-scrollbar-thumb { background: rgba(108,63,255,0.4); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--v1); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .ts-card, .ts-tut, .hw-card {
+    animation: fadeUp 0.5s ease both;
+  }
+
+  /* Stagger via nth-child */
+  .ts-card:nth-child(1), .ts-tut:nth-child(1), .hw-card:nth-child(1) { animation-delay: 0.05s; }
+  .ts-card:nth-child(2), .ts-tut:nth-child(2), .hw-card:nth-child(2) { animation-delay: 0.10s; }
+  .ts-card:nth-child(3), .ts-tut:nth-child(3), .hw-card:nth-child(3) { animation-delay: 0.15s; }
+  .ts-card:nth-child(4), .ts-tut:nth-child(4), .hw-card:nth-child(4) { animation-delay: 0.20s; }
+  .ts-card:nth-child(5), .ts-tut:nth-child(5), .hw-card:nth-child(5) { animation-delay: 0.25s; }
+  .ts-card:nth-child(6), .ts-tut:nth-child(6), .hw-card:nth-child(6) { animation-delay: 0.30s; }
+
+  /* ── SEARCH IN MODAL ── */
+  .ts-search-wrap {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .ts-search-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ts-search-box {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .ts-search-input {
+    flex: 1;
+    padding: 11px 16px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .ts-search-input::placeholder { color: rgba(255,255,255,0.25); }
+  .ts-search-input:focus {
+    border-color: var(--v2);
+    background: rgba(108,63,255,0.1);
+  }
+
+  .ts-search-btn {
+    padding: 11px 18px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--v1), var(--p1));
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: all 0.2s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ts-search-btn:hover { filter: brightness(1.1); transform: scale(0.98); }
+  .ts-search-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .ts-search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ts-result-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s;
+    animation: fadeUp 0.3s ease both;
+  }
+
+  .ts-result-card:hover {
+    background: rgba(108,63,255,0.12);
+    border-color: rgba(162,89,255,0.4);
+    transform: translateX(4px);
+  }
+
+  .ts-result-favicon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .ts-result-favicon img {
+    width: 20px; height: 20px;
+    object-fit: contain;
+  }
+
+  .ts-result-info { flex: 1; min-width: 0; }
+
+  .ts-result-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #d4c8ff;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ts-result-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ts-result-url {
+    font-size: 11px;
+    color: var(--v2);
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ts-result-arrow {
+    color: var(--muted);
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: transform 0.2s, color 0.2s;
+  }
+
+  .ts-result-card:hover .ts-result-arrow {
+    transform: translateX(3px);
+    color: var(--v2);
+  }
+
+  .ts-search-loading {
+    text-align: center;
+    padding: 20px 0;
+    color: var(--muted);
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ts-spinner {
+    width: 28px; height: 28px;
+    border: 3px solid rgba(108,63,255,0.2);
+    border-top-color: var(--v2);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .ts-search-error {
+    padding: 12px 16px;
+    background: rgba(247,37,133,0.1);
+    border: 1px solid rgba(247,37,133,0.25);
+    border-radius: 10px;
+    color: #ff6b9d;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .ts-quick-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .ts-qtag {
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(108,63,255,0.12);
+    color: var(--v2);
+    border: 1px solid rgba(108,63,255,0.2);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .ts-qtag:hover {
+    background: rgba(108,63,255,0.25);
+    border-color: var(--v2);
+    color: #fff;
+  }
+
+  .ts-google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-top: 10px;
+  }
+
+  .ts-google-btn:hover {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  @media (max-width: 600px) {
+    .ts-logo { font-size: 38px; }
+    .ts-hero h2 { font-size: 28px; }
+    .ts-btn-outline { margin-left: 0; margin-top: 10px; }
+    .ts-contact { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="ts-header">
+  <div class="ts-logo">Tech<span class="accent">Solve</span> <span class="bolt">⚡</span></div>
+  <div class="ts-tagline">Soluciones Tecnológicas para Estudiantes y Profesionales TIC</div>
+  <div class="ts-badge">🎓 Aprende · Resuelve · Avanza</div>
+</header>
+
+<nav class="ts-nav">
+  <a href="#inicio">🏠 Inicio</a>
+  <a href="#problemas">🔧 Problemas</a>
+  <a href="#tutoriales">📚 Tutoriales</a>
+  <a href="#herramientas">🛠 Herramientas</a>
+  <a href="#contacto">✉️ Contacto</a>
+</nav>
+
+<section class="ts-hero" id="inicio">
+  <div class="ts-pill">✨ Plataforma TIC #1 para Estudiantes</div>
+  <h2>¿Tienes un problema <em>tecnológico</em>?</h2>
+  <p>Encuentra soluciones rápidas para redes, computadoras, programación, bases de datos y mucho más. ¡Gratis y en español!</p>
+  <button class="ts-btn ts-btn-primary" onclick="document.getElementById('problemas').scrollIntoView({behavior:'smooth'})">Explorar Soluciones</button>
+  <button class="ts-btn ts-btn-outline" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Pedir Ayuda</button>
+</section>
+
+<div class="ts-stats">
+  <div class="ts-stat"><div class="ts-stat-n">6+</div><div class="ts-stat-l">Soluciones</div></div>
+  <div class="ts-stat"><div class="ts-stat-n">100%</div><div class="ts-stat-l">Gratuito</div></div>
+  <div class="ts-stat"><div class="ts-stat-n">24/7</div><div class="ts-stat-l">Disponible</div></div>
+  <div class="ts-stat"><div class="ts-stat-n">TIC</div><div class="ts-stat-l">Especializado</div></div>
+</div>
+
+<!-- PROBLEMAS -->
+<div class="ts-sec" id="problemas">
+  <div class="ts-sec-title">
+    <div class="ts-pill">🔧 Soporte Técnico</div>
+    <h3>Problemas <span>Frecuentes</span></h3>
+    <p>Haz clic en cualquier tarjeta para ver la solución paso a paso</p>
+  </div>
+  <div class="ts-grid">
+    <div class="ts-card" style="--accent:#6c3fff;--icon-bg:rgba(108,63,255,0.15)" onclick="openModal('lenta')">
+      <div class="ts-card-strip"></div>
+      <div class="ts-card-icon">💻</div>
+      <h4>Computadora Lenta</h4>
+      <p>Elimina archivos temporales, desinstala programas y aplica mantenimiento periódico.</p>
+      <span class="ts-link">Ver solución</span>
+    </div>
+    <div class="ts-card" style="--accent:#f72585;--icon-bg:rgba(247,37,133,0.12)" onclick="openModal('internet')">
+      <div class="ts-card-strip"></div>
+      <div class="ts-card-icon">📡</div>
+      <h4>Sin Internet</h4>
+      <p>Verifica el cable, reinicia el router y comprueba la configuración IP del equipo.</p>
+      <span class="ts-link">Ver solución</span>
+    </div>
+    <div class="ts-card" style="--accent:#4cc9f0;--icon-bg:rgba(76,201,240,0.12)" onclick="openModal('packet')">
+      <div class="ts-card-strip"></div>
+      <div class="ts-card-icon">🌐</div>
+      <h4>Error en Packet Tracer</h4>
+      <p>Revisa IPs, máscaras, gateways y protocolos de enrutamiento configurados.</p>
+      <span class="ts-link">Ver solución</span>
+    </div>
+    <div class="ts-card" style="--accent:#f8961e;--icon-bg:rgba(248,150,30,0.12)" onclick="openModal('virus')">
+      <div class="ts-card-strip"></div>
+      <div class="ts-card-icon">🛡️</div>
+      <h4>Posible Virus o Malware</h4>
+      <p>Escanea el equipo, revisa procesos sospechosos y limpia la PC con herramientas gratuitas.</p>
+      <span class="ts-link">Ver solución</span>
+    </div>
+    <div class="ts-card" style="--accent:#43e97b;--icon-bg:rgba(67,233,123,0.12)" onclick="openModal('pantalla')">
+      <div class="ts-card-strip"></div>
+      <div class="ts-card-icon">🖥️</div>
+      <h4>Pantalla Azul (BSOD)</h4>
+      <p>Identifica el código de error y repara archivos del sistema con comandos específicos.</p>
+      <span class="ts-link">Ver solución</span>
+    </div>
+    <div class="ts-card" style="--accent:#a259ff;--icon-bg:rgba(162,89,255,0.12)" onclick="openModal('impresora')">
+      <div class="ts-card-strip"></div>
+      <div class="ts-card-icon">🖨️</div>
+      <h4>Impresora No Detectada</h4>
+      <p>Reinstala los drivers, verifica la conexión y configura la impresora predeterminada.</p>
+      <span class="ts-link">Ver solución</span>
+    </div>
+  </div>
+</div>
+
+<div class="ts-features">
+  <div class="ts-features-inner">
+    <div class="ts-feat"><span class="ts-feat-icon">⚡</span><h4>Soluciones Rápidas</h4><p>Pasos claros y directos para resolver problemas en minutos.</p></div>
+    <div class="ts-feat"><span class="ts-feat-icon">📖</span><h4>Tutoriales Prácticos</h4><p>Aprende con ejemplos reales orientados al mundo TIC.</p></div>
+    <div class="ts-feat"><span class="ts-feat-icon">🎯</span><h4>Especializado TIC</h4><p>Contenido diseñado para estudiantes y profesionales del área.</p></div>
+    <div class="ts-feat"><span class="ts-feat-icon">🌎</span><h4>100% en Español</h4><p>Todo el contenido en tu idioma, sin barreras.</p></div>
+  </div>
+</div>
+
+<!-- TUTORIALES -->
+<div class="ts-sec" id="tutoriales">
+  <div class="ts-sec-title">
+    <div class="ts-pill">📚 Aprende Gratis</div>
+    <h3>Tutoriales <span>Disponibles</span></h3>
+    <p>Desde cero hasta nivel intermedio, con ejemplos prácticos</p>
+  </div>
+  <div class="ts-grid">
+    <div class="ts-tut" onclick="openModal('html')">
+      <div class="ts-tut-top" style="background:linear-gradient(135deg,#4f46e5,#7c3aed)"><span>🌐</span></div>
+      <div class="ts-tut-body"><h4>HTML Básico</h4><p>Crea páginas web desde cero con las etiquetas fundamentales.</p><div class="ts-tag">Básico</div></div>
+    </div>
+    <div class="ts-tut" onclick="openModal('lan')">
+      <div class="ts-tut-top" style="background:linear-gradient(135deg,#be185d,#7c3aed)"><span>🔌</span></div>
+      <div class="ts-tut-body"><h4>Redes LAN</h4><p>Configuración básica de redes empresariales y domésticas.</p><div class="ts-tag">Intermedio</div></div>
+    </div>
+    <div class="ts-tut" onclick="openModal('bd')">
+      <div class="ts-tut-top" style="background:linear-gradient(135deg,#0e7490,#0f766e)"><span>🗄️</span></div>
+      <div class="ts-tut-body"><h4>Bases de Datos</h4><p>Introducción a MySQL y las consultas SQL más importantes.</p><div class="ts-tag">Básico</div></div>
+    </div>
+    <div class="ts-tut" onclick="openModal('css')">
+      <div class="ts-tut-top" style="background:linear-gradient(135deg,#c2410c,#d97706)"><span>🎨</span></div>
+      <div class="ts-tut-body"><h4>CSS y Diseño Web</h4><p>Dale estilo y diseño profesional a tus páginas HTML.</p><div class="ts-tag">Básico</div></div>
+    </div>
+    <div class="ts-tut" onclick="openModal('python')">
+      <div class="ts-tut-top" style="background:linear-gradient(135deg,#15803d,#0e7490)"><span>🐍</span></div>
+      <div class="ts-tut-body"><h4>Python Básico</h4><p>Variables, bucles y funciones en el lenguaje más popular.</p><div class="ts-tag">Básico</div></div>
+    </div>
+    <div class="ts-tut" onclick="openModal('cisco')">
+      <div class="ts-tut-top" style="background:linear-gradient(135deg,#6c3fff,#f72585)"><span>📶</span></div>
+      <div class="ts-tut-body"><h4>Comandos Cisco IOS</h4><p>Los comandos esenciales para configurar routers y switches.</p><div class="ts-tag">Intermedio</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- HERRAMIENTAS -->
+<div class="hw" id="herramientas">
+  <div class="hw-inner">
+    <div class="hw-title">
+      <div class="hw-pill">🛠 Recursos Útiles</div>
+      <h3>Herramientas <span>Recomendadas</span></h3>
+      <p>Haz clic en el botón de cada herramienta para ir directo a su página oficial de descarga</p>
+    </div>
+    <div class="hw-grid">
+      <div class="hw-card" style="--accent:#4cc9f0;--tag-bg:rgba(76,201,240,0.1);--btn1:#0ea5e9;--btn2:#4cc9f0">
+        <div class="hw-free">Gratis</div>
+        <div class="hw-ico">🖥️</div>
+        <div class="hw-name">Packet Tracer</div>
+        <div class="hw-desc">Simulador de redes Cisco para practicar configuraciones LAN, WAN y enrutamiento.</div>
+        <div class="hw-htag">Redes · Cisco</div>
+        <div class="hw-badges"><span class="hw-badge">Windows</span><span class="hw-badge">macOS</span><span class="hw-badge">Linux</span></div>
+        <a class="hw-btn" href="https://www.netacad.com/cisco-packet-tracer" target="_blank">⬇️ Descargar Packet Tracer</a>
+      </div>
+      <div class="hw-card" style="--accent:#a259ff;--tag-bg:rgba(162,89,255,0.1);--btn1:#6c3fff;--btn2:#a259ff">
+        <div class="hw-free">Gratis</div>
+        <div class="hw-ico">📝</div>
+        <div class="hw-name">Visual Studio Code</div>
+        <div class="hw-desc">Editor de código gratuito de Microsoft. Ideal para HTML, CSS, Python y JavaScript.</div>
+        <div class="hw-htag">Programación · Editor</div>
+        <div class="hw-badges"><span class="hw-badge">Windows</span><span class="hw-badge">macOS</span><span class="hw-badge">Linux</span></div>
+        <a class="hw-btn" href="https://code.visualstudio.com/download" target="_blank">⬇️ Descargar VS Code</a>
+      </div>
+      <div class="hw-card" style="--accent:#f72585;--tag-bg:rgba(247,37,133,0.1);--btn1:#c9184a;--btn2:#f72585">
+        <div class="hw-free">Gratis</div>
+        <div class="hw-ico">🔍</div>
+        <div class="hw-name">Wireshark</div>
+        <div class="hw-desc">Analizador de tráfico de red en tiempo real. Esencial para diagnóstico de paquetes.</div>
+        <div class="hw-htag">Redes · Análisis</div>
+        <div class="hw-badges"><span class="hw-badge">Windows</span><span class="hw-badge">macOS</span><span class="hw-badge">Linux</span></div>
+        <a class="hw-btn" href="https://www.wireshark.org/download.html" target="_blank">⬇️ Descargar Wireshark</a>
+      </div>
+      <div class="hw-card" style="--accent:#f8961e;--tag-bg:rgba(248,150,30,0.1);--btn1:#e85d04;--btn2:#f8961e">
+        <div class="hw-free">Online</div>
+        <div class="hw-ico">💾</div>
+        <div class="hw-name">DB Fiddle</div>
+        <div class="hw-desc">Practica SQL en el navegador sin instalar nada. Compatible con MySQL, PostgreSQL y SQLite.</div>
+        <div class="hw-htag">Base de datos · SQL</div>
+        <div class="hw-badges"><span class="hw-badge">Sin instalar</span><span class="hw-badge">Navegador</span></div>
+        <a class="hw-btn" href="https://www.db-fiddle.com" target="_blank">🌐 Abrir DB Fiddle</a>
+      </div>
+      <div class="hw-card" style="--accent:#43e97b;--tag-bg:rgba(67,233,123,0.1);--btn1:#1d9e75;--btn2:#43e97b">
+        <div class="hw-free">Gratis</div>
+        <div class="hw-ico">🐍</div>
+        <div class="hw-name">Python</div>
+        <div class="hw-desc">Lenguaje de programación popular y fácil de aprender. Ideal para automatización y datos.</div>
+        <div class="hw-htag">Programación · Python</div>
+        <div class="hw-badges"><span class="hw-badge">Windows</span><span class="hw-badge">macOS</span><span class="hw-badge">Linux</span></div>
+        <a class="hw-btn" href="https://www.python.org/downloads/" target="_blank">⬇️ Descargar Python</a>
+      </div>
+      <div class="hw-card" style="--accent:#fb8500;--tag-bg:rgba(251,133,0,0.1);--btn1:#d62828;--btn2:#fb8500">
+        <div class="hw-free">Gratis</div>
+        <div class="hw-ico">⚙️</div>
+        <div class="hw-name">XAMPP</div>
+        <div class="hw-desc">Servidor local con Apache, MySQL y PHP. Perfecto para practicar desarrollo web.</div>
+        <div class="hw-htag">Servidor · Base de datos</div>
+        <div class="hw-badges"><span class="hw-badge">Windows</span><span class="hw-badge">macOS</span><span class="hw-badge">Linux</span></div>
+        <a class="hw-btn" href="https://www.apachefriends.org/es/download.html" target="_blank">⬇️ Descargar XAMPP</a>
+      </div>
+      <div class="hw-card" style="--accent:#4cc9f0;--tag-bg:rgba(76,201,240,0.1);--btn1:#0077b6;--btn2:#4cc9f0">
+        <div class="hw-free">Gratis</div>
+        <div class="hw-ico">🛡️</div>
+        <div class="hw-name">Malwarebytes</div>
+        <div class="hw-desc">Antimalware potente y gratuito. Detecta y elimina virus, spyware y amenazas en segundos.</div>
+        <div class="hw-htag">Seguridad · Antivirus</div>
+        <div class="hw-badges"><span class="hw-badge">Windows</span><span class="hw-badge">macOS</span></div>
+        <a class="hw-btn" href="https://www.malwarebytes.com/mwb-download" target="_blank">⬇️ Descargar Malwarebytes</a>
+      </div>
+      <div class="hw-card" style="--accent:#f72585;--tag-bg:rgba(247,37,133,0.1);--btn1:#7209b7;--btn2:#f72585">
+        <div class="hw-free">Online</div>
+        <div class="hw-ico">☁️</div>
+        <div class="hw-name">Google Colab</div>
+        <div class="hw-desc">Entorno Python gratuito en la nube. Sin instalar nada, ideal para practicar código.</div>
+        <div class="hw-htag">Python · Nube</div>
+        <div class="hw-badges"><span class="hw-badge">Sin instalar</span><span class="hw-badge">Navegador</span></div>
+        <a class="hw-btn" href="https://colab.research.google.com" target="_blank">🌐 Abrir Google Colab</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACTO -->
+<div class="ts-contact-wrap" id="contacto">
+  <div class="ts-contact">
+    <h3>✉️ Solicita Ayuda Personalizada</h3>
+    <div class="sub">Cuéntanos tu problema y te respondemos lo antes posible</div>
+    <label>Tu nombre</label>
+    <input type="text" id="ts-nombre" placeholder="Ej: Carlos Andrés">
+    <label>Tu correo electrónico</label>
+    <input type="email" id="ts-email" placeholder="correo@ejemplo.com">
+    <label>Categoría del problema</label>
+    <select id="ts-cat">
+      <option value="">Selecciona una categoría...</option>
+      <option>Redes y conectividad</option>
+      <option>Programación y desarrollo</option>
+      <option>Bases de datos</option>
+      <option>Hardware y mantenimiento</option>
+      <option>Seguridad informática</option>
+      <option>Otro</option>
+    </select>
+    <label>Describe tu problema</label>
+    <textarea id="ts-prob" placeholder="Explica con detalle tu situación..."></textarea>
+    <button class="ts-btn ts-btn-primary" style="width:100%;justify-content:center" onclick="enviar()">Enviar Consulta 🚀</button>
+    <div id="ts-resp"></div>
+  </div>
+</div>
+
+<footer class="ts-footer">
+  <div class="ts-footer-links">
+    <a href="#inicio">Inicio</a>
+    <a href="#problemas">Problemas</a>
+    <a href="#tutoriales">Tutoriales</a>
+    <a href="#herramientas">Herramientas</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <p>© 2026 <span>TechSolve</span> | Desarrollado por <span>Carlos Andrés Paredes González</span> ⚡</p>
+</footer>
+
+<!-- MODAL -->
+<div class="ts-overlay" id="ts-overlay" onclick="closeIfOverlay(event)">
+  <div class="ts-modal">
+    <button class="ts-close" onclick="closeModal()">✕</button>
+    <div class="ts-modal-header">
+      <div class="ts-modal-ico" id="ts-modal-ico"></div>
+      <h3 id="ts-modal-title"></h3>
+    </div>
+    <div id="ts-modal-body"></div>
+
+    <!-- BUSCADOR IA -->
+    <div class="ts-search-wrap">
+      <div class="ts-search-label">🔍 Buscar más recursos en la web</div>
+      <div class="ts-quick-tags" id="ts-qtags"></div>
+      <div class="ts-search-box">
+        <input class="ts-search-input" id="ts-search-input" placeholder="Ej: cómo limpiar archivos temporales Windows..." onkeydown="if(event.key==='Enter') buscarRecursos()">
+        <button class="ts-search-btn" id="ts-search-btn" onclick="buscarRecursos()">
+          <span id="ts-btn-label">Buscar</span> 🚀
+        </button>
+      </div>
+      <div id="ts-search-results"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+var data = {
+  lenta:{
+    ico:'💻', bg:'rgba(108,63,255,0.2)',
+    titulo:'Computadora Lenta — Solución paso a paso',
+    tags:['archivos temporales Windows','optimizar RAM PC','deshabilitar programas inicio'],
+    query:'como solucionar computadora lenta Windows',
+    contenido:`<p>Una PC lenta suele tener causas sencillas de corregir. Sigue estos pasos en orden:</p><ul><li>Abre el <strong>Administrador de Tareas</strong> (Ctrl+Shift+Esc) y cierra procesos que consuman mucha CPU o RAM.</li><li>Ejecuta <strong>%temp%</strong> en el buscador de Windows y elimina todos los archivos temporales.</li><li>Desinstala programas que ya no usas desde el Panel de Control.</li><li>Ve a Inicio → Administrador de Tareas → pestaña Inicio y deshabilita las apps innecesarias.</li><li>Si el disco es HDD, realiza una desfragmentación. Si es SSD, no es necesario.</li><li>Verifica que Windows y los drivers estén actualizados.</li></ul>`
+  },
+  internet:{
+    ico:'📡', bg:'rgba(247,37,133,0.2)',
+    titulo:'Sin Internet — Solución paso a paso',
+    tags:['reiniciar router modem','renovar IP Windows CMD','cambiar DNS Google'],
+    query:'como solucionar sin internet conexión',
+    contenido:`<p>Antes de llamar al proveedor, revisa lo siguiente:</p><ul><li>Asegúrate de que el cable de red esté bien conectado al PC y al router.</li><li>Reinicia el router: apágalo, espera 30 segundos y vuelve a encenderlo.</li><li>En Windows, ve a Configuración de red y ejecuta el diagnóstico automático.</li><li>En CMD ejecuta <strong>ipconfig /release</strong> y luego <strong>ipconfig /renew</strong> para renovar la IP.</li><li>Prueba con <strong>ping 8.8.8.8</strong>; si responde pero no hay web, el problema puede ser el DNS.</li><li>Cambia el DNS a <strong>8.8.8.8</strong> (Google) o <strong>1.1.1.1</strong> (Cloudflare).</li></ul>`
+  },
+  packet:{
+    ico:'🌐', bg:'rgba(76,201,240,0.2)',
+    titulo:'Error en Packet Tracer — Solución',
+    tags:['configurar IP Packet Tracer','enrutamiento estático Cisco','RIP OSPF Packet Tracer'],
+    query:'errores comunes Packet Tracer configuración redes Cisco',
+    contenido:`<p>Los errores más comunes tienen que ver con configuración incorrecta. Revisa:</p><ul><li>Que las IPs de cada interfaz sean correctas y únicas en la red.</li><li>Que la máscara de subred corresponda al rango que estás usando.</li><li>Que la puerta de enlace en cada PC apunte a la interfaz del router más cercana.</li><li>Si usas enrutamiento estático, verifica que las rutas estén bien definidas en cada router.</li><li>Si usas <strong>RIP u OSPF</strong>, asegúrate de que el protocolo esté activo en todas las interfaces.</li><li>Usa el comando <strong>ping</strong> desde la CLI para localizar dónde se corta la comunicación.</li></ul>`
+  },
+  virus:{
+    ico:'🛡️', bg:'rgba(248,150,30,0.2)',
+    titulo:'Posible Virus o Malware — Cómo actuar',
+    tags:['eliminar malware gratis','escanear virus modo seguro','Malwarebytes tutorial'],
+    query:'como eliminar virus malware PC Windows gratis',
+    contenido:`<p>Si sospechas de un virus, actúa con calma y sigue estos pasos:</p><ul><li>Desconéctate de Internet para evitar que el malware se comunique con servidores externos.</li><li>Abre el Administrador de Tareas y busca procesos con nombres extraños o que consumen muchos recursos.</li><li>Ejecuta el <strong>Antivirus de Windows Defender</strong> o instala <strong>Malwarebytes Free</strong> para un escaneo profundo.</li><li>Si el virus bloquea el sistema, arranca en <strong>Modo Seguro</strong> y realiza el escaneo desde ahí.</li><li>Elimina extensiones desconocidas del navegador y borra el historial y caché.</li><li>Como último recurso, considera restaurar el sistema a un punto anterior.</li></ul>`
+  },
+  pantalla:{
+    ico:'🖥️', bg:'rgba(67,233,123,0.2)',
+    titulo:'Pantalla Azul (BSOD) — Cómo solucionarlo',
+    tags:['sfc /scannow reparar Windows','DISM RestoreHealth','códigos error BSOD'],
+    query:'como solucionar pantalla azul BSOD Windows',
+    contenido:`<p>El BSOD puede tener varias causas. Sigue estos pasos:</p><ul><li>Anota el código de error que aparece en la pantalla (ej: <strong>IRQL_NOT_LESS_OR_EQUAL</strong>).</li><li>Reinicia en Modo Normal y busca el código en Google para identificar la causa.</li><li>Abre CMD como administrador y ejecuta <strong>sfc /scannow</strong> para reparar archivos del sistema.</li><li>Luego ejecuta <strong>DISM /Online /Cleanup-Image /RestoreHealth</strong>.</li><li>Actualiza o desinstala el driver que puede estar causando el problema.</li><li>Verifica la RAM con la herramienta <strong>Diagnóstico de memoria de Windows</strong>.</li></ul>`
+  },
+  impresora:{
+    ico:'🖨️', bg:'rgba(162,89,255,0.2)',
+    titulo:'Impresora No Detectada — Solución',
+    tags:['reinstalar driver impresora','reiniciar cola impresión','impresora no aparece Windows'],
+    query:'impresora no detectada Windows solución drivers',
+    contenido:`<p>Cuando Windows no reconoce la impresora, prueba lo siguiente:</p><ul><li>Desconecta y vuelve a conectar el cable USB o verifica la conexión Wi-Fi de la impresora.</li><li>Ve a <strong>Dispositivos e Impresoras</strong> en el Panel de Control y elimina la impresora problemática.</li><li>Descarga los drivers más recientes desde el sitio oficial del fabricante e instálalos.</li><li>Reinicia el servicio de impresión: abre Servicios, busca <strong>Cola de impresión</strong> y reinícialo.</li><li>Establece la impresora como predeterminada desde Dispositivos e Impresoras.</li><li>Si es de red, verifica que la impresora y el PC estén en el mismo segmento de red.</li></ul>`
+  },
+  html:{
+    ico:'🌐', bg:'rgba(108,63,255,0.2)',
+    titulo:'HTML Básico — Por dónde empezar',
+    tags:['tutorial HTML desde cero','etiquetas HTML esenciales','W3Schools HTML español'],
+    query:'tutorial HTML básico para principiantes',
+    contenido:`<p>HTML es el lenguaje que estructura cualquier página web. Conceptos clave:</p><ul><li>Todo documento inicia con <strong>&lt;!DOCTYPE html&gt;</strong> y tiene una etiqueta <strong>&lt;html&gt;</strong> raíz.</li><li>El <strong>&lt;head&gt;</strong> contiene metadatos; el <strong>&lt;body&gt;</strong> contiene lo visible.</li><li>Etiquetas esenciales: <strong>&lt;h1&gt;–&lt;h6&gt;</strong>, <strong>&lt;p&gt;</strong>, <strong>&lt;a&gt;</strong>, <strong>&lt;img&gt;</strong>, <strong>&lt;div&gt;</strong>.</li><li>Los atributos como href, src, id y class se escriben dentro de la etiqueta de apertura.</li><li>Practica creando un archivo .html y abriéndolo en el navegador. ¡No necesitas servidor!</li></ul>`
+  },
+  lan:{
+    ico:'🔌', bg:'rgba(247,37,133,0.2)',
+    titulo:'Redes LAN — Configuración básica',
+    tags:['configurar red LAN doméstica','asignar IP estática router','VLANs switch configuración'],
+    query:'configuración redes LAN tutorial básico',
+    contenido:`<p>Una red LAN conecta dispositivos dentro del mismo espacio físico. Pasos básicos:</p><ul><li>Define el rango IP que usarás, ej: <strong>192.168.1.0/24</strong>.</li><li>Asigna IP fija o dinámica (DHCP) a cada dispositivo.</li><li>Conecta los equipos al switch y el switch al router por cable o Wi-Fi.</li><li>Configura la puerta de enlace con la IP del router (generalmente <strong>192.168.1.1</strong>).</li><li>Verifica conectividad con <strong>ping</strong> entre equipos.</li><li>Para mayor seguridad, separa la red en VLANs si el switch lo permite.</li></ul>`
+  },
+  bd:{
+    ico:'🗄️', bg:'rgba(76,201,240,0.2)',
+    titulo:'Bases de Datos — Introducción a MySQL',
+    tags:['tutorial MySQL desde cero','consultas SQL básicas','CREATE TABLE INSERT SELECT'],
+    query:'tutorial MySQL bases de datos SQL principiantes',
+    contenido:`<p>MySQL es uno de los gestores relacionales más usados. Comandos esenciales:</p><ul><li><strong>CREATE DATABASE nombre;</strong> — crea una base de datos.</li><li><strong>USE nombre;</strong> — selecciona la base de datos.</li><li><strong>CREATE TABLE tabla (id INT PRIMARY KEY, nombre VARCHAR(100));</strong></li><li><strong>INSERT INTO tabla VALUES (1, 'Carlos');</strong> — inserta un registro.</li><li><strong>SELECT * FROM tabla;</strong> — consulta todos los registros.</li><li>Practica sin instalar nada en <strong>DB Fiddle</strong> o <strong>SQLiteOnline</strong>.</li></ul>`
+  },
+  css:{
+    ico:'🎨', bg:'rgba(248,150,30,0.2)',
+    titulo:'CSS y Diseño Web — Conceptos clave',
+    tags:['tutorial CSS Flexbox','diseño responsivo media queries','CSS Grid vs Flexbox'],
+    query:'tutorial CSS diseño web desde cero',
+    contenido:`<p>CSS controla la apariencia de tus páginas HTML. Lo esencial:</p><ul><li>Puedes aplicar estilos en línea, en la etiqueta <strong>&lt;style&gt;</strong> o en un archivo externo .css.</li><li>Los selectores más usados son: etiqueta, clase (<strong>.clase</strong>) e id (<strong>#id</strong>).</li><li>Propiedades esenciales: <strong>color, background, font-size, margin, padding, display, flex</strong>.</li><li>Usa <strong>Flexbox</strong> para alinear elementos en filas y columnas de forma sencilla.</li><li>Las <strong>media queries</strong> hacen que tu diseño sea responsivo para móviles y tablets.</li></ul>`
+  },
+  python:{
+    ico:'🐍', bg:'rgba(67,233,123,0.2)',
+    titulo:'Python Básico — Primeros pasos',
+    tags:['instalar Python Windows','variables y bucles Python','funciones Python ejemplos'],
+    query:'tutorial Python básico para principiantes en español',
+    contenido:`<p>Python es uno de los lenguajes más amigables para aprender. Comienza así:</p><ul><li>Instala Python desde <strong>python.org</strong> o usa <strong>Google Colab</strong> sin instalar nada.</li><li>Variables: <strong>nombre = "Carlos"</strong>, <strong>edad = 20</strong></li><li>Imprimir: <strong>print("Hola, " + nombre)</strong></li><li>Condicionales: <strong>if edad >= 18: print("Mayor de edad")</strong></li><li>Bucles: <strong>for i in range(5): print(i)</strong></li><li>Funciones: <strong>def saludar(nombre): return "Hola " + nombre</strong></li></ul>`
+  },
+  cisco:{
+    ico:'📶', bg:'rgba(108,63,255,0.2)',
+    titulo:'Comandos Cisco IOS — Esenciales',
+    tags:['comandos básicos Cisco router','show ip route configurar','copy running-config startup'],
+    query:'comandos esenciales Cisco IOS router switch tutorial',
+    contenido:`<p>Comandos imprescindibles para configurar dispositivos Cisco:</p><ul><li><strong>enable</strong> — entra al modo privilegiado.</li><li><strong>configure terminal</strong> — entra al modo de configuración global.</li><li><strong>interface fa0/0</strong> — selecciona la interfaz FastEthernet.</li><li><strong>ip address 192.168.1.1 255.255.255.0</strong> — asigna dirección IP.</li><li><strong>no shutdown</strong> — activa la interfaz.</li><li><strong>show ip route</strong> — muestra la tabla de enrutamiento.</li><li><strong>copy running-config startup-config</strong> — guarda la configuración.</li></ul>`
+  }
+};
+
+var currentQuery = '';
+
+function openModal(k) {
+  var d = data[k];
+  var ico = document.getElementById('ts-modal-ico');
+  ico.style.background = d.bg;
+  ico.textContent = d.ico;
+  document.getElementById('ts-modal-title').textContent = d.titulo;
+  document.getElementById('ts-modal-body').innerHTML = d.contenido;
+
+  // Set up quick tags
+  var tagsEl = document.getElementById('ts-qtags');
+  tagsEl.innerHTML = '';
+  d.tags.forEach(function(tag) {
+    var btn = document.createElement('button');
+    btn.className = 'ts-qtag';
+    btn.textContent = tag;
+    btn.onclick = function() {
+      document.getElementById('ts-search-input').value = tag;
+      buscarRecursos();
+    };
+    tagsEl.appendChild(btn);
+  });
+
+  // Pre-fill search with default query
+  document.getElementById('ts-search-input').value = d.query;
+  currentQuery = d.query;
+  document.getElementById('ts-search-results').innerHTML = '';
+
+  document.getElementById('ts-overlay').classList.add('on');
+
+  // Auto-search on open
+  setTimeout(buscarRecursos, 200);
+}
+
+function closeModal() {
+  document.getElementById('ts-overlay').classList.remove('on');
+}
+
+function closeIfOverlay(e) {
+  if (e.target === document.getElementById('ts-overlay')) closeModal();
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+// Recursos curados por categoría (URLs reales y verificadas)
+var recursosBase = {
+  lenta: [
+    { titulo: "Cómo acelerar Windows 10/11 — Microsoft Support", desc: "Guía oficial de Microsoft para optimizar el rendimiento del PC.", url: "https://support.microsoft.com/es-es/windows/sugerencias-para-mejorar-el-rendimiento-del-equipo-en-windows-b3b3ef5b-5953-fb6a-2528-4bbed82fba96", dominio: "support.microsoft.com" },
+    { titulo: "Cómo limpiar archivos temporales en Windows — CCM", desc: "Pasos para liberar espacio y acelerar el sistema eliminando temporales.", url: "https://es.ccm.net/informatica/windows/1435-como-limpiar-los-archivos-temporales-en-windows/", dominio: "ccm.net" },
+    { titulo: "Optimizar el inicio de Windows — HTG", desc: "Cómo deshabilitar programas de inicio para arrancar más rápido.", url: "https://www.howtogeek.com/74523/how-to-disable-startup-programs-in-windows/", dominio: "howtogeek.com" },
+    { titulo: "PC lenta: causas y soluciones — Xataka", desc: "Análisis de las causas más comunes y cómo resolverlas paso a paso.", url: "https://www.xataka.com/basics/como-hacer-que-tu-pc-vaya-mas-rapido", dominio: "xataka.com" }
+  ],
+  internet: [
+    { titulo: "Solucionar problemas de conexión a Internet — Microsoft", desc: "Diagnóstico oficial de Windows para problemas de red e internet.", url: "https://support.microsoft.com/es-es/windows/solucionar-problemas-de-conexi%C3%B3n-a-internet-en-windows-82e340ab-3d86-3a57-f218-ca46455fb0e8", dominio: "support.microsoft.com" },
+    { titulo: "ipconfig /release y /renew — CCM", desc: "Cómo renovar la dirección IP desde CMD para restaurar la conexión.", url: "https://es.ccm.net/informatica/redes/391-comandos-ipconfig/", dominio: "ccm.net" },
+    { titulo: "Cambiar DNS a Google o Cloudflare — Redes Zone", desc: "Tutorial para cambiar los servidores DNS y mejorar la conexión.", url: "https://www.redeszone.net/tutoriales/internet/cambiar-dns-windows/", dominio: "redeszone.net" },
+    { titulo: "Cómo reiniciar el router correctamente — Xataka", desc: "La diferencia entre apagar, reiniciar y resetear el router.", url: "https://www.xataka.com/basics/como-reiniciar-router", dominio: "xataka.com" }
+  ],
+  packet: [
+    { titulo: "Packet Tracer: configuración básica de red — Netacad", desc: "Recursos oficiales de Cisco para aprender a usar Packet Tracer.", url: "https://www.netacad.com/courses/packet-tracer", dominio: "netacad.com" },
+    { titulo: "Errores comunes en Packet Tracer — YouTube", desc: "Video tutorial sobre los errores más frecuentes y cómo corregirlos.", url: "https://www.youtube.com/results?search_query=errores+comunes+packet+tracer+cisco", dominio: "youtube.com" },
+    { titulo: "Enrutamiento estático Cisco IOS — Redes Zone", desc: "Cómo configurar rutas estáticas en routers Cisco paso a paso.", url: "https://www.redeszone.net/tutoriales/redes-cable/enrutamiento-estatico-cisco/", dominio: "redeszone.net" },
+    { titulo: "Comandos ping y show en Cisco — Stack Overflow", desc: "Cómo diagnosticar conectividad en Packet Tracer con CLI.", url: "https://stackoverflow.com/questions/tagged/cisco", dominio: "stackoverflow.com" }
+  ],
+  virus: [
+    { titulo: "Cómo eliminar malware con Malwarebytes — Malwarebytes", desc: "Guía oficial para escanear y limpiar el PC con Malwarebytes Free.", url: "https://www.malwarebytes.com/lp/sem/es/", dominio: "malwarebytes.com" },
+    { titulo: "Modo seguro Windows 10/11 para eliminar virus — Microsoft", desc: "Cómo arrancar en modo seguro para eliminar software malicioso.", url: "https://support.microsoft.com/es-es/windows/iniciar-el-equipo-en-modo-seguro-en-windows-92c27cff-db89-8644-1ce4-b3e5e56fe234", dominio: "support.microsoft.com" },
+    { titulo: "Windows Defender: escaneo completo — Microsoft", desc: "Cómo realizar un análisis completo con el antivirus integrado.", url: "https://support.microsoft.com/es-es/windows/mantener-el-equipo-protegido-con-seguridad-de-windows-2ae0363d-0ada-c064-8b56-6a39afb6a963", dominio: "support.microsoft.com" },
+    { titulo: "Eliminar extensiones maliciosas del navegador — CCM", desc: "Cómo detectar y eliminar extensiones peligrosas en Chrome y Firefox.", url: "https://es.ccm.net/seguridad/virus/5499-como-eliminar-extensiones-del-navegador/", dominio: "ccm.net" }
+  ],
+  pantalla: [
+    { titulo: "Solucionar errores de pantalla azul — Microsoft Support", desc: "Guía oficial para diagnosticar y corregir el BSOD en Windows.", url: "https://support.microsoft.com/es-es/windows/solucionar-errores-de-pantalla-azul-en-windows-191cb493-53b1-4e47-a0f5-65f3d7a84e08", dominio: "support.microsoft.com" },
+    { titulo: "sfc /scannow y DISM: reparar Windows — HTG", desc: "Cómo usar las herramientas integradas para reparar archivos del sistema.", url: "https://www.howtogeek.com/222532/how-to-repair-corrupted-windows-system-files-with-the-sfc-and-dism-commands/", dominio: "howtogeek.com" },
+    { titulo: "Códigos de error BSOD: qué significan — Xataka", desc: "Listado y explicación de los códigos de error más comunes.", url: "https://www.xataka.com/basics/pantalla-azul-windows-como-solucionar-bsod", dominio: "xataka.com" },
+    { titulo: "Diagnóstico de memoria RAM — Microsoft", desc: "Herramienta oficial de Windows para detectar fallos en la RAM.", url: "https://support.microsoft.com/es-es/windows/diagnosticar-la-memoria-del-equipo-en-windows-4b06f750-12d8-d4c5-4e78-1e4d8c03e24f", dominio: "support.microsoft.com" }
+  ],
+  impresora: [
+    { titulo: "Solucionar problemas de impresora — Microsoft Support", desc: "Diagnóstico oficial para cuando Windows no detecta la impresora.", url: "https://support.microsoft.com/es-es/windows/solucionar-problemas-de-la-impresora-en-windows-8f6e6e9e-4b1e-4f2e-8a1e-6f6e6e6e6e6e", dominio: "support.microsoft.com" },
+    { titulo: "Reinstalar drivers de impresora — CCM", desc: "Cómo desinstalar y reinstalar controladores de impresora paso a paso.", url: "https://es.ccm.net/informatica/perifericos/impresoras/10337-como-reinstalar-los-controladores-de-una-impresora/", dominio: "ccm.net" },
+    { titulo: "Cola de impresión atascada — HTG", desc: "Cómo reiniciar el servicio de cola de impresión para desatascarlo.", url: "https://www.howtogeek.com/169415/how-to-clear-a-stuck-print-queue-in-windows/", dominio: "howtogeek.com" },
+    { titulo: "Impresora en red no detectada — Redes Zone", desc: "Configurar impresoras compartidas en red local Windows.", url: "https://www.redeszone.net/tutoriales/redes-cable/compartir-impresora-red-local-windows/", dominio: "redeszone.net" }
+  ],
+  html: [
+    { titulo: "Tutorial HTML completo — W3Schools (ES)", desc: "El recurso más completo para aprender HTML desde cero con ejemplos.", url: "https://www.w3schools.com/html/", dominio: "w3schools.com" },
+    { titulo: "Guía HTML para principiantes — MDN Web Docs", desc: "Documentación oficial de Mozilla: estándar y bien explicado.", url: "https://developer.mozilla.org/es/docs/Learn/HTML", dominio: "developer.mozilla.org" },
+    { titulo: "HTML desde cero — FreeCodeCamp (español)", desc: "Curso gratuito interactivo de HTML para principiantes.", url: "https://www.freecodecamp.org/espanol/learn/responsive-web-design/", dominio: "freecodecamp.org" },
+    { titulo: "Aprende HTML en 1 hora — YouTube", desc: "Video tutorial completo de HTML básico en español.", url: "https://www.youtube.com/results?search_query=tutorial+html+desde+cero+español", dominio: "youtube.com" }
+  ],
+  lan: [
+    { titulo: "Configurar red LAN doméstica — Redes Zone", desc: "Guía completa para armar y configurar una red de área local.", url: "https://www.redeszone.net/tutoriales/redes-cable/configurar-red-local-lan-windows/", dominio: "redeszone.net" },
+    { titulo: "Subnetting y direccionamiento IP — Cisco", desc: "Fundamentos oficiales de Cisco sobre redes IP y subredes.", url: "https://www.cisco.com/c/es_mx/support/docs/ip/routing-information-protocol-rip/13788-3.html", dominio: "cisco.com" },
+    { titulo: "Configurar DHCP en router doméstico — HTG", desc: "Cómo asignar IPs dinámicas y estáticas en la red local.", url: "https://www.howtogeek.com/69612/how-to-set-up-and-troubleshoot-a-home-network/", dominio: "howtogeek.com" },
+    { titulo: "Introducción a redes LAN — YouTube", desc: "Video explicativo sobre conceptos básicos de redes locales.", url: "https://www.youtube.com/results?search_query=configuracion+red+LAN+tutorial+español", dominio: "youtube.com" }
+  ],
+  bd: [
+    { titulo: "Tutorial MySQL desde cero — W3Schools", desc: "Aprende SQL con ejemplos interactivos: CREATE, SELECT, INSERT y más.", url: "https://www.w3schools.com/mysql/", dominio: "w3schools.com" },
+    { titulo: "MySQL: documentación oficial", desc: "Referencia completa del lenguaje SQL y funciones de MySQL.", url: "https://dev.mysql.com/doc/refman/8.0/en/tutorial.html", dominio: "dev.mysql.com" },
+    { titulo: "Bases de datos SQL — FreeCodeCamp", desc: "Curso gratuito de bases de datos relacionales y SQL.", url: "https://www.freecodecamp.org/learn/relational-database/", dominio: "freecodecamp.org" },
+    { titulo: "Practica SQL online — DB Fiddle", desc: "Ejecuta consultas MySQL/PostgreSQL/SQLite directo en el navegador.", url: "https://www.db-fiddle.com/", dominio: "db-fiddle.com" }
+  ],
+  css: [
+    { titulo: "Tutorial CSS completo — W3Schools", desc: "Aprende CSS con ejemplos visuales: colores, layout, Flexbox y más.", url: "https://www.w3schools.com/css/", dominio: "w3schools.com" },
+    { titulo: "Guía Flexbox — CSS Tricks", desc: "La guía visual más completa de Flexbox con diagramas explicativos.", url: "https://css-tricks.com/snippets/css/a-guide-to-flexbox/", dominio: "css-tricks.com" },
+    { titulo: "CSS desde cero — MDN Web Docs", desc: "Documentación oficial de Mozilla sobre todas las propiedades CSS.", url: "https://developer.mozilla.org/es/docs/Learn/CSS", dominio: "developer.mozilla.org" },
+    { titulo: "CSS Grid vs Flexbox — YouTube", desc: "Video comparativo en español para elegir el sistema de layout correcto.", url: "https://www.youtube.com/results?search_query=css+grid+flexbox+español+tutorial", dominio: "youtube.com" }
+  ],
+  python: [
+    { titulo: "Tutorial Python oficial — Python.org", desc: "El tutorial oficial del lenguaje, perfecto para empezar desde cero.", url: "https://docs.python.org/es/3/tutorial/", dominio: "docs.python.org" },
+    { titulo: "Python para principiantes — W3Schools", desc: "Aprende variables, funciones, bucles y más con ejemplos interactivos.", url: "https://www.w3schools.com/python/", dominio: "w3schools.com" },
+    { titulo: "Curso Python gratis — FreeCodeCamp", desc: "Certificación gratuita de Python con ejercicios prácticos.", url: "https://www.freecodecamp.org/learn/scientific-computing-with-python/", dominio: "freecodecamp.org" },
+    { titulo: "Python desde cero — YouTube", desc: "Video tutorial completo de Python básico en español.", url: "https://www.youtube.com/results?search_query=python+desde+cero+español+tutorial", dominio: "youtube.com" }
+  ],
+  cisco: [
+    { titulo: "Comandos Cisco IOS: referencia completa — Cisco", desc: "Documentación oficial de todos los comandos del sistema IOS.", url: "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/fundamentals/command/cf_command_ref.html", dominio: "cisco.com" },
+    { titulo: "Guía básica de comandos Cisco — Redes Zone", desc: "Los comandos más usados para configurar routers y switches.", url: "https://www.redeszone.net/tutoriales/redes-cable/comandos-cisco-ios-basicos/", dominio: "redeszone.net" },
+    { titulo: "Cisco IOS para principiantes — YouTube", desc: "Video tutorial de comandos esenciales en Packet Tracer.", url: "https://www.youtube.com/results?search_query=comandos+cisco+ios+tutorial+español", dominio: "youtube.com" },
+    { titulo: "Preguntas Cisco en Stack Overflow", desc: "Foro técnico con soluciones a problemas reales de configuración Cisco.", url: "https://stackoverflow.com/questions/tagged/cisco-ios", dominio: "stackoverflow.com" }
+  ]
+};
+
+function buscarRecursos() {
+  var query = document.getElementById('ts-search-input').value.trim();
+  if (!query) return;
+
+  var resultsEl = document.getElementById('ts-search-results');
+  var btn = document.getElementById('ts-search-btn');
+  var lbl = document.getElementById('ts-btn-label');
+
+  btn.disabled = true;
+  lbl.textContent = 'Buscando...';
+  resultsEl.innerHTML = '<div class="ts-search-loading"><div class="ts-spinner"></div><span>Buscando recursos...</span></div>';
+
+  // Simulate brief loading then show results
+  setTimeout(function() {
+    // Find matching curated resources based on query keywords
+    var qLower = query.toLowerCase();
+    var results = null;
+
+    // Match by keyword to curated set
+    var keyMap = {
+      lenta: ['lenta','lento','lentitud','lento','ram','cpu','temp','temporales','startup','inicio','disco','optimiz'],
+      internet: ['internet','conexion','conexión','red','wifi','dns','ip','router','modem','módem','ipconfig','ping'],
+      packet: ['packet','tracer','cisco','rip','ospf','enrutamiento','router','gateway','mascara','máscara','subred'],
+      virus: ['virus','malware','malwarebytes','defender','spyware','antivirus','modo seguro','extension'],
+      pantalla: ['azul','bsod','pantalla','sfc','dism','ram','driver','kernel'],
+      impresora: ['impresora','printer','driver','cola','spool','detecta'],
+      html: ['html','etiqueta','pagina','página','web','doctype','body','head'],
+      lan: ['lan','red local','switch','dhcp','subred','segmento','vlan'],
+      bd: ['sql','mysql','base de datos','create','select','insert','query','tabla'],
+      css: ['css','flexbox','grid','estilo','diseño','responsive','media query','selector'],
+      python: ['python','pip','def','bucle','variable','función','print','if','for'],
+      cisco: ['cisco','ios','enable','configure','terminal','interface','route','show']
+    };
+
+    // Score each category
+    var best = null, bestScore = 0;
+    Object.keys(keyMap).forEach(function(cat) {
+      var score = 0;
+      keyMap[cat].forEach(function(kw) { if (qLower.includes(kw)) score++; });
+      if (score > bestScore) { bestScore = score; best = cat; }
+    });
+
+    // Use best match or default to general web search display
+    if (best && bestScore > 0) {
+      results = recursosBase[best];
+    } else {
+      // Show generic helpful links + Google
+      results = null;
+    }
+
+    var googleUrl = 'https://www.google.com/search?q=' + encodeURIComponent(query + ' tutorial solución en español');
+
+    var html = '';
+
+    if (results && results.length > 0) {
+      results.forEach(function(r, i) {
+        var favicon = 'https://www.google.com/s2/favicons?domain=' + r.dominio + '&sz=32';
+        html += `<a class="ts-result-card" href="${r.url}" target="_blank" rel="noopener" style="animation-delay:${i*0.08}s">
+          <div class="ts-result-favicon"><img src="${favicon}" alt="" onerror="this.parentElement.textContent='🔗'"></div>
+          <div class="ts-result-info">
+            <div class="ts-result-title">${escHtml(r.titulo)}</div>
+            <div class="ts-result-desc">${escHtml(r.desc)}</div>
+            <div class="ts-result-url">${r.dominio}</div>
+          </div>
+          <div class="ts-result-arrow">›</div>
+        </a>`;
+      });
+    } else {
+      html += `<div style="color:var(--muted);font-size:13px;padding:10px 0 6px;">No se encontraron recursos para <em>"${escHtml(query)}"</em>. Prueba en Google:</div>`;
+    }
+
+    html += `<a class="ts-google-btn" href="${googleUrl}" target="_blank" rel="noopener">🔎 Buscar "${escHtml(query.length > 30 ? query.substring(0,30)+'…' : query)}" en Google →</a>`;
+    resultsEl.innerHTML = html;
+
+    btn.disabled = false;
+    lbl.textContent = 'Buscar';
+  }, 600);
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function enviar() {
+  var n = document.getElementById('ts-nombre').value.trim();
+  var e = document.getElementById('ts-email').value.trim();
+  if (!n) { alert('Por favor ingresa tu nombre'); return; }
+  if (!e) { alert('Por favor ingresa tu correo'); return; }
+  document.getElementById('ts-resp').innerHTML = '✅ ¡Gracias ' + n + '! Tu consulta ha sido registrada. Te contactaremos a ' + e + ' pronto.';
+}
+</script>
+</body>
+</html>

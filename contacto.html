@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — TechSolve ⚡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --v1: #6c3fff;
+    --v2: #a259ff;
+    --p1: #f72585;
+    --a1: #4cc9f0;
+    --a2: #43e97b;
+    --a3: #f8961e;
+    --dark: #0b0018;
+    --dark2: #130029;
+    --dark3: #1e0040;
+    --text: #e8e0ff;
+    --muted: #9b8ec4;
+    --surface: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.10);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── HEADER (compacto) ── */
+  .ts-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 44px 20px 40px;
+    overflow: hidden;
+    background: var(--dark2);
+  }
+
+  .ts-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 15% 50%, rgba(108,63,255,0.45) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 60% at 85% 30%, rgba(247,37,133,0.35) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .ts-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    position: relative;
+    z-index: 1;
+    line-height: 1;
+    text-decoration: none;
+    color: var(--text);
+    display: inline-block;
+  }
+
+  .ts-logo .accent { color: var(--p1); }
+  .ts-logo .bolt {
+    display: inline-block;
+    animation: boltPulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px #f8961e);
+  }
+
+  @keyframes boltPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 12px #f8961e); }
+    50% { transform: scale(1.15); filter: drop-shadow(0 0 24px #f8961e); }
+  }
+
+  /* ── NAV ── */
+  .ts-nav {
+    background: rgba(11, 0, 24, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+  }
+
+  .ts-nav a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 16px 18px;
+    font-weight: 600;
+    font-size: 13.5px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.2px;
+  }
+
+  .ts-nav a:hover { color: #fff; border-color: var(--p1); }
+  .ts-nav a.active { color: #fff; border-color: var(--p1); }
+
+  /* ── CONTACT ── */
+  .ts-contact-wrap {
+    padding: 64px 20px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ts-contact {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(108,63,255,0.25);
+    border-radius: 24px;
+    padding: 44px;
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ts-contact::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(108,63,255,0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .ts-pill {
+    display: inline-block;
+    padding: 5px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    background: rgba(108,63,255,0.15);
+    color: var(--v2);
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(108,63,255,0.3);
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  .ts-contact h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+    position: relative;
+  }
+
+  .ts-contact .sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .ts-contact label {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .ts-contact input,
+  .ts-contact textarea,
+  .ts-contact select {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 20px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    position: relative;
+  }
+
+  .ts-contact input::placeholder,
+  .ts-contact textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+  .ts-contact input:focus,
+  .ts-contact textarea:focus {
+    border-color: var(--v2);
+    background: rgba(108,63,255,0.1);
+  }
+
+  .ts-contact textarea { resize: vertical; min-height: 110px; }
+
+  .ts-contact select {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239b8ec4' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+  }
+
+  .ts-contact select option { background: #1a0040; color: #fff; }
+
+  .ts-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.22s;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .ts-btn-primary {
+    background: linear-gradient(135deg, var(--v1), var(--p1));
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(108,63,255,0.45);
+  }
+
+  .ts-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 36px rgba(108,63,255,0.6);
+  }
+
+  #ts-resp {
+    margin-top: 14px;
+    color: var(--a2);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    min-height: 22px;
+  }
+
+  /* ── FOOTER ── */
+  .ts-footer {
+    background: rgba(0,0,0,0.4);
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 13px;
+  }
+
+  .ts-footer-links {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .ts-footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .ts-footer-links a:hover { color: var(--p1); }
+  .ts-footer span { color: var(--v2); font-weight: 700; }
+
+  @media (max-width: 600px) {
+    .ts-logo { font-size: 30px; }
+    .ts-contact { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="ts-header">
+  <a href="index.html" class="ts-logo">Tech<span class="accent">Solve</span> <span class="bolt">⚡</span></a>
+</header>
+
+<nav class="ts-nav">
+  <a href="index.html#inicio">🏠 Inicio</a>
+  <a href="index.html#problemas">🔧 Problemas</a>
+  <a href="index.html#tutoriales">📚 Tutoriales</a>
+  <a href="index.html#herramientas">🛠 Herramientas</a>
+  <a href="contacto.html" class="active">✉️ Contacto</a>
+</nav>
+
+<div class="ts-contact-wrap">
+  <div class="ts-contact">
+    <div class="ts-pill">✉️ Contáctanos</div>
+    <h3>Solicita Ayuda Personalizada</h3>
+    <div class="sub">Cuéntanos tu problema y te respondemos lo antes posible</div>
+    <label>Tu nombre</label>
+    <input type="text" id="ts-nombre" placeholder="Ej: Carlos Andrés">
+    <label>Tu correo electrónico</label>
+    <input type="email" id="ts-email" placeholder="correo@ejemplo.com">
+    <label>Categoría del problema</label>
+    <select id="ts-cat">
+      <option value="">Selecciona una categoría...</option>
+      <option>Redes y conectividad</option>
+      <option>Programación y desarrollo</option>
+      <option>Bases de datos</option>
+      <option>Hardware y mantenimiento</option>
+      <option>Seguridad informática</option>
+      <option>Otro</option>
+    </select>
+    <label>Describe tu problema</label>
+    <textarea id="ts-prob" placeholder="Explica con detalle tu situación..."></textarea>
+    <button class="ts-btn ts-btn-primary" style="width:100%;justify-content:center" onclick="enviar()">Enviar Consulta 🚀</button>
+    <div id="ts-resp"></div>
+  </div>
+</div>
+
+<footer class="ts-footer">
+  <div class="ts-footer-links">
+    <a href="index.html#inicio">Inicio</a>
+    <a href="index.html#problemas">Problemas</a>
+    <a href="index.html#tutoriales">Tutoriales</a>
+    <a href="index.html#herramientas">Herramientas</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+  <p>© 2026 <span>TechSolve</span> | Desarrollado por <span>Carlos Andrés Paredes González</span> ⚡</p>
+</footer>
+
+<script>
+function enviar() {
+  var n = document.getElementById('ts-nombre').value.trim();
+  var e = document.getElementById('ts-email').value.trim();
+  if (!n) { alert('Por favor ingresa tu nombre'); return; }
+  if (!e) { alert('Por favor ingresa tu correo'); return; }
+  document.getElementById('ts-resp').innerHTML = '✅ ¡Gracias ' + n + '! Tu consulta ha sido registrada. Te contactaremos a ' + e + ' pronto.';
+}
+</script>
+</body>
+</html>
